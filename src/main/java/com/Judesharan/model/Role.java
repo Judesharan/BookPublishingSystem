@@ -16,7 +16,7 @@ public class Role {
 	
 	@Id
 	@GeneratedValue
-	@Column(name = "roleId")
+	@Column(name = "role_id")
 	private int roleId;
 
 	@Column(name = "name")

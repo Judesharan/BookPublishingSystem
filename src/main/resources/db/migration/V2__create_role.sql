@@ -1,25 +1,25 @@
 CREATE TABLE role            
 (
-roleId NUMERIC ,
+role_id INT ,
 name VARCHAR(50) NOT NULL,
-CONSTRAINT roleId_pk PRIMARY KEY ( roleId ),
-CONSTRAINT roleId_cq CHECK ( roleId BETWEEN 1 AND 3 ),
+CONSTRAINT role_id_pk PRIMARY KEY ( role_id ),
+CONSTRAINT role_id_cq CHECK ( role_id BETWEEN 1 AND 3 ),
 CONSTRAINT name_cq CHECK ( name IN ('user', 'author', 'admin' ))
 );
 
-INSERT INTO role (roleId, name) VALUES
+INSERT INTO role (role_id, name) VALUES
 (
 1,
 "admin"
 );
 
-INSERT INTO role (roleId, name) VALUES
+INSERT INTO role (role_id, name) VALUES
 (
 2,
 "author"
 );
 
-INSERT INTO role (roleId, name) VALUES
+INSERT INTO role (role_id, name) VALUES
 (
 3,
 "user"

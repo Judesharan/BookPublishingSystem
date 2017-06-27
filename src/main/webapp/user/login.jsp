@@ -1,47 +1,39 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-    pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
 <html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core" %>
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
+<meta charset="UTF-8">
 <title>Login</title>
+<link rel="stylesheet" href="<c:url value="/login/css/style.css" />">
 </head>
 <body>
+<body>
 <%@ include file="../../layout/header.jsp"%>
-	<div class="container-fluid">
-
-		<div class="row">
-			<div class="col-md-4">
-
-				<div class="portlet-title">
-					<div class="page-header">
-						<h3>Login</h3>
-					</div>
+	<div class="container">
+		<section id="content">
+			<form action="../auth/login" method = "post">
+				<h1>Login</h1>
+				<div>
+					<input type="text" placeholder="Enter your Username" required
+						name="username" />
 				</div>
-				<div class="portlet-body">
-					<form action="../log/login" method="POST">
-						<div class="form-group">
-							<label for="userName">Username :</label> <input type="text"
-								class="form-control" name="userName" placeholder="Enter Username"
-								autofocus="autofocus" required="required" id="userName" />`	
- 
-						</div>
-
-						<div class="form-group">
-							<label for="password">Password :</label> <input type="password"
-								class="form-control" name="password"
-								placeholder="Enter Password" required="required" id="password" />
-						</div>
-						<div class="form-group">
-							<button type="submit" name="add" class="btn btn-success"
-								id="addLoginBtn">SIGN IN</button>
-
-							<a href="log/register" class='btn btn-primary'>SIGN UP</a>
-						</div>
-					</form>
+				<div>
+					<input type="password" placeholder="Enter your Password" required
+						name="password" />
 				</div>
-			</div>
-		</div>
+				<div>
+					<input type="submit" value="Log in" />
+				</div>
+				</form>
+				<div>
+				Not a member yet ? <a href = "../auth/register"><input type="submit" value="Join us" /> </a> 
+				</div><br><a href="#">Forgot Password?</a><br>
+			<div class="button"></div>
+		</section>
 	</div>
+</body>
+<%@ include file="../../layout/footer.jsp"%>
+<script src="login/js/index.js"></script>
+
 </body>
 </html>

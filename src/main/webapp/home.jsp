@@ -1,56 +1,60 @@
-<%@ page language="java" contentType="text/html; charset=ISO-8859-1"
-	pageEncoding="ISO-8859-1"%>
 <!DOCTYPE html>
-<html>
+<html lang="en">
 <head>
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<title>Welcome</title>
+<meta charset="utf-8" />
+<title>Book Publishing System</title>
+<link id="theme" rel="stylesheet" type="text/css" href="style.css"
+	title="theme" />
+<link rel="stylesheet"
+	href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Condensed|Droid+Sans|Droid+Sans|Droid+Sans|Droid+Sans"
+	type="text/css" />
+<script type="text/javascript" lang="javascript"
+	src="js/jquery-1.8.1.min.js"></script>
+<script type="text/javascript" lang="javascript" src="js/scripts.js"></script>
+<script type="text/javascript" lang="javascript" src="js/theme.js"></script>
+<script type="text/javascript" lang="javascript" src="js/custom.js"></script>
 </head>
 <body>
-<%@ include file="../../layout/header.jsp"%>
-	
-	<div class="container-fluid">
-
+	<%@ include file="../../layout/header.jsp"%>
+	<div id="header-wrapper">
+		<div class="bg"></div>
 		<div class="row">
-			<div class="col-md-4">
-
-				<%
-				Object object = session.getAttribute("LOGGED_IN_USER");
-				if ( object != null ){
-					response.sendRedirect("/book");
-				}
-				
-				
-				%>
-
-				<div class="portlet-title">
-					<div class="page-header">
-						<h3>Login</h3>
-					</div>
-				</div>
-				<div class="portlet-body">
-					<form action="../auth/login" method="POST">
-						<div class="form-group">
-							<label for="userName">EmailId :</label> <input type="email"
-								class="form-control" name="emailId" placeholder="Enter emailId"
-								autofocus="autofocus" required="required" id="emailId" />
-						</div>
-
-						<div class="form-group">
-							<label for="password">Password :</label> <input type="password"
-								class="form-control" name="password"
-								placeholder="Enter Password" required="required" id="password" />
-						</div>
-						<div class="form-group">
-							<button type="submit" name="add" class="btn btn-success"
-								id="addLoginBtn">SIGN IN</button>
-
-							<a href="auth/register" class='btn btn-primary'>SIGN UP</a>
-						</div>
-					</form>
+			<div id="header">
+				<div id="tagline">
+					<h1>Welcome to Online Book Store</h1>
+					<br />
+					<h2>Login to Shop</h2>
+					<a href="../auth"><input type="button" class="cta pie"
+						value="Login" /></a>
 				</div>
 			</div>
 		</div>
 	</div>
+	<div class="bg"></div>
+	<div class="row">
+		<div id="container">
+			<div id="main">
+				<section class="home">
+					<div>
+						<h1>Pub Hub 200</h1>
+						<p>Pub Hub 200 is a bootcamp project provided to the students
+							to create a spring boot web application. This project involves
+							understanding the concepts of spring boot application and
+							creation of a book store application.</p>
+						<h3>Book Publishing System</h3>
+						<p>
+							This is the created project for the bootcamp. <span
+								style="font-weight: bold">Book Publishing System</span> includes
+							the concept of Spring, Spring Data JPA, Spring MVC, SpringBoot,
+							and front end platforms. This makes us a full stack web
+							developer.
+						</p>
+					</div>
+				</section>
+			</div>
+			<div class="clear" style="height: 30px"></div>
+		</div>
+	</div>
+	<%@ include file="../../layout/footer.jsp"%>
 </body>
 </html>

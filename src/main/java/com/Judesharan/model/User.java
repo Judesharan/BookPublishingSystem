@@ -24,7 +24,7 @@ public class User {
 		private String name;
 
 		@Column(name = "username")
-		private String userName;
+		private String username;
 		
 		@Column(name = "password")
 		private String password;
@@ -32,14 +32,26 @@ public class User {
 		@Column(name = "mobile_no")
 		private String mobileNumber;
 		
-		@Column(name = "email_ID")
+		@Column(name = "email_id")
 		private String email;
 
 		@Column(name="active")
-		private Boolean active;
+		private String active;
 		
 		@ManyToOne
-		@JoinColumn(name="user_roleId")
+		@JoinColumn(name="user_role_id")
 		private Role role;
 
+		public User(){
+			
+		}
+		
+		public User(String name, String username, String password, String mobileNumber, String emailID) {
+			this.name = name;
+			this.username = username;
+			this.password = password;
+			this.mobileNumber = mobileNumber;
+			this.email = emailID;
+			this.active = "A";
+		}
 }

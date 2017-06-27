@@ -13,24 +13,16 @@ th{color: MidnightBlue; text-align: center}
 	<h2>Welcome to book Management - List of Books Available</h2>
 	<table border = "1">
 		<tr>
-			<th>ISBN</th>
 			<th>Title</th>
 			<th>Author</th>
-			<th>Publish Date</th>
-			<th>Content</th>
 			<th>Price</th>
-			<th>Status</th>
 			<th>View</th>
 		</tr>
 		<c:forEach items="${book}" var="book">
 		<tr>	
-			<td>${book.isbn}</td>
 			<td>${book.title}</td>
 			<td>${book.author}</td>
-			<td>${book.publishDate}</td>
-			<td>${book.content}</td>
 			<td>${book.price}</td>
-			<td>${book.status}</td>
 			<td><a href="../book/${book.isbn}">View</a></td>
 		</tr>
 		</c:forEach>
