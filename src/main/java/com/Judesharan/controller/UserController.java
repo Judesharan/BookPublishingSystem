@@ -17,6 +17,7 @@ import com.Judesharan.service.UserService;
 @Controller
 @RequestMapping("user")
 public class UserController {
+	
 	@Autowired
 	private UserService userService;
 
@@ -29,7 +30,7 @@ public class UserController {
 	}
 
 	@GetMapping("/{id}")
-	public String show(@PathVariable("id") int id, ModelMap modelMap, HttpSession session) {
+	public String show(@PathVariable("id") int id, ModelMap modelMap) {
 		System.out.println("ShowBook:" + id);
 		User user = userService.findOne(id);
 		modelMap.addAttribute("USER_DETAIL", user);

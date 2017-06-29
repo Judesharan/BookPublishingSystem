@@ -5,7 +5,7 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.ui.ModelMap;
+import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -17,6 +17,7 @@ import com.Judesharan.service.UserService;
 @Controller
 @RequestMapping("auth")
 public class AuthenticationController {
+	
 	private static final Logger LOGGER = Logger.getLogger(AuthenticationController.class);
 
 	@Autowired
@@ -28,19 +29,17 @@ public class AuthenticationController {
 	}
 	
 	@PostMapping("/login")
-	public String login(@RequestParam("username") String username, @RequestParam("password") String password,
-			ModelMap modelMap, HttpSession session) {
+	public String login(@RequestParam("username") String username, @RequestParam("password") String password, HttpSession session) {
 		LOGGER.info("Entering Login " + username + "-" + password);
-		LOGGER.debug(new Object[] { username, password });
 
 		User user = userService.findByUserNameAndPassword(username, password);
 		LOGGER.info("User:" + user);
+		
 		if (user != null) {
 			session.setAttribute("USER_LOGGED", user);
 			LOGGER.info("Login Success");
 			return "redirect:../book";
 		} else {
-			modelMap.addAttribute("ERROR_MESSAGE", "Invalid Email Id/Password");
 			LOGGER.error("Login Failure");
 			return "user/login";
 		}
@@ -52,13 +51,16 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/register")
-	public String register(@RequestParam("name") String name, @RequestParam("username") String username,
+	public String register(BindingResult result, @RequestParam("name") String name, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("emailID") String emailID, @RequestParam("roleID") String roleID) {
 
 		User user = new User(name, username, password, mobileNumber, emailID);
 		userService.register(user);
-		return "user/login";
+		if(result.hasErrors())
+			return "user/login";
+		else
+			return "redirect:../";
 	}
 
 	@GetMapping("/reset-password")

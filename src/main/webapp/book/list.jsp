@@ -19,7 +19,7 @@ th{color: MidnightBlue; text-align: center}
 			<th>View</th>
 		</tr>
 		<c:forEach items="${book}" var="book">
-		<tr>	
+		<tr>
 			<td>${book.title}</td>
 			<td>${book.author}</td>
 			<td>${book.price}</td>

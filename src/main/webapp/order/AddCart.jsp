@@ -23,7 +23,7 @@
 				<td>${USER_LOGGED.id}</td>
 				<td>${SELECTED_BOOK.isbn}</td>
 				<td>${SELECTED_BOOK.price}</td>
-				<td><input type = "number" name = "quantity" placeholder = "Quantity" required /></td>
+				<td></td>
 				<td>${SELECTED_BOOK.price * Quantity}</td>
 				<td>${SELECTED_BOOK.status}</td>
 				<td><a href="../order/checkout">Check Out</a></td>

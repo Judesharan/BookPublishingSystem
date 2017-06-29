@@ -29,6 +29,7 @@ public class BookController {
 		LOGGER.info("Entering list");
 		List<Book> book = null;
 		book = bookService.findAll();
+		System.out.println(book);
 		session.setAttribute("book", book);
 		return "book/list";
 
@@ -38,6 +39,6 @@ public class BookController {
 		System.out.println("ShowBook:" + isbn);
 		Book book = bookService.findOne(isbn);
 		session.setAttribute("SELECTED_BOOK", book);
-		return "book/show";
+		return "book/show1";
 	}
 }

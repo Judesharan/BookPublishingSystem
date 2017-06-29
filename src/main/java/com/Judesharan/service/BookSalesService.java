@@ -1,5 +1,7 @@
 package com.Judesharan.service;
 
+import java.util.List;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -14,5 +16,17 @@ public class BookSalesService {
 	
 	public void save(BookSales bookSales) {
 		bookSalesRepository.save(bookSales);
+	}
+	
+	public List<BookSales> findAll(){
+		return bookSalesRepository.findAll();
+	}
+	
+	public BookSales findOne(int salesId){
+		return bookSalesRepository.findOne(salesId);
+	}
+	
+	public List<BookSales> findAllOrders(int userId){
+		return bookSalesRepository.findByOrderByIdDesc(userId);
 	}
 }
