@@ -11,7 +11,7 @@ import lombok.Data;
 
 @Data
 @Entity
-@Table(name = "book")
+@Table(name = "books")
 public class Book {
 	
 	@Id
@@ -35,4 +35,7 @@ public class Book {
 
 	@Column(name = "status")
 	private String status;
+	
+	@Column(name = "image_url")
+	private String imageUrl;
 }

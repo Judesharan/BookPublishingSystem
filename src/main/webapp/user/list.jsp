@@ -12,9 +12,6 @@
 
 		<div class="row">
 			<div class="col-md-12">
-
-
-
 				<div class="panel panel-default">
 					<div class="panel-heading">
 						<strong><i class="fa fa-list"></i> List of Users</strong>

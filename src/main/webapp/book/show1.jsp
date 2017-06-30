@@ -21,8 +21,8 @@
 					</div>
 				</c:if>
 
-				<form action="../bookSalesItems/addToCart" method="post">
-					<input type="hidden" name="book_id" value="${SELECTED_BOOK.isbn}" />
+				<form action="../orderitems/addtocart" method="POST">
+					<input type="hidden" name="book_isbn" value="${SELECTED_BOOK.isbn}" />
 					<table class="table table-bordered" border="1">
 						<tr>
 							<th>Book Name</th>

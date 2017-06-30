@@ -5,7 +5,6 @@ import javax.servlet.http.HttpSession;
 import org.apache.log4j.Logger;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
-import org.springframework.validation.BindingResult;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
 import org.springframework.web.bind.annotation.RequestMapping;
@@ -51,16 +50,13 @@ public class AuthenticationController {
 	}
 
 	@PostMapping("/register")
-	public String register(BindingResult result, @RequestParam("name") String name, @RequestParam("username") String username,
+	public String register(@RequestParam("name") String name, @RequestParam("username") String username,
 			@RequestParam("password") String password, @RequestParam("mobileNumber") String mobileNumber,
 			@RequestParam("emailID") String emailID, @RequestParam("roleID") String roleID) {
 
 		User user = new User(name, username, password, mobileNumber, emailID);
 		userService.register(user);
-		if(result.hasErrors())
-			return "user/login";
-		else
-			return "redirect:../";
+		return "redirect:../";
 	}
 
 	@GetMapping("/reset-password")
