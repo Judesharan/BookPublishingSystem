@@ -73,8 +73,6 @@ public class OrderItemcontroller {
 
 		session.setAttribute("MY_CART_ITEMS", order);
 
-		// orderService.save(order);
-
 		return "redirect:../orders/cart";
 	}
 

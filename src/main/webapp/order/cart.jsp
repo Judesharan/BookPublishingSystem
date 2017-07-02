@@ -1,5 +1,3 @@
-
-
 <%@ page language="java" contentType="text/html; charset=ISO-8859-1"
 	pageEncoding="ISO-8859-1"%>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
@@ -25,7 +23,7 @@
 					<c:if test="${empty MY_CART_ITEMS || MY_CART_ITEMS.orderItems.isEmpty()}">
 						<img src="../assets/images/empty-cart.png" width="300" />
 						<h5>Your Shopping Cart is empty</h5>
-						<a href="../books" class="btn btn-info">Continue Shopping</a>
+						<a href="../book" class="btn btn-info">Continue Shopping</a>
 					</c:if>
 					<c:if test="${!empty MY_CART_ITEMS && !MY_CART_ITEMS.orderItems.isEmpty()}">
 						<table border="1" class="table table-bordered">
@@ -46,7 +44,7 @@
 										<td>${item.book.title}</td>
 										<td>${item.quantity}</td>
 										<td>Rs.${item.book.price*item.quantity }</td>
-										<td><a href="../orderItems/remove?id=${loop.index+1}"
+										<td><a href="../orderitems/remove?id=${loop.index}"
 											class="btn btn-danger">Remove</a>
 											
 											
@@ -57,7 +55,7 @@
 
 
 						<br />
-						<a href="../bookuser/list" class="btn btn-info">Continue Shopping</a>
+						<a href="../book" class="btn btn-info">Continue Shopping</a>
 
 
 					</c:if>

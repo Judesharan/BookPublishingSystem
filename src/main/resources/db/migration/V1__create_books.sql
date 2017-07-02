@@ -66,7 +66,7 @@ INSERT INTO books (isbn, title, author, publish_date, content, price, status, im
 'Hunger Games: Mockingjay', 
 'SUZANNE COLLINS', 
 STR_TO_DATE('25/08/2010','%d/%m/%Y') , 
-'Mockingjay is a 2010 science fiction novel by American author Suzanne Collins. It is the last installment of The Hunger Games, following 2008s The Hunger Games and 2009s Catching Fire. The book continues the story of Katniss Everdeen, who agrees to unify the districts of Panem in a rebellion against the tyrannical Capitol.',
+'Mockingjay is a 2010 science fiction novel by American author Suzanne Collins. It is the last installment of The Hunger Games, following 2008s The Hunger Games and 2009s Catching Fire.',
 375.00, 
 'PUBLISHED',
 'bookList/images/mockingjay.jpg'
@@ -78,7 +78,7 @@ INSERT INTO books (isbn, title, author, publish_date, content, price, status, im
 'The Hobbit', 
 'J.R.R.TOLKIEN',
 STR_TO_DATE('21/09/1937','%d/%m/%Y') , 
-'The Hobbit, or There and Back Again is a childrens fantasy novel by English author J. R. R. Tolkien. It was published on 21 September 1937 to wide critical acclaim, being nominated for the Carnegie Medal and awarded a prize from the New York Herald Tribune for best juvenile fiction. The book remains popular and is recognized as a classic in childrens literature.',
+'The Hobbit, or There and Back Again is a childrens fantasy novel by English author J. R. R. Tolkien. The book remains popular and is recognized as a classic in childrens literature.',
 199.00, 
 'PUBLISHED',
 'bookList/images/the-hobbit.jpg'

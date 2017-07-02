@@ -39,6 +39,6 @@ public class BookController {
 		System.out.println("ShowBook:" + isbn);
 		Book book = bookService.findOne(isbn);
 		session.setAttribute("SELECTED_BOOK", book);
-		return "book/show2";
+		return "book/show";
 	}
 }
