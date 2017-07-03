@@ -1,5 +1,7 @@
 package com.Judesharan.controller;
 
+import java.util.List;
+
 import javax.servlet.http.HttpSession;
 
 import org.apache.log4j.Logger;
@@ -37,6 +39,13 @@ public class AuthenticationController {
 		if (user != null) {
 			session.setAttribute("USER_LOGGED", user);
 			LOGGER.info("Login Success");
+			if(user.getUsername().equals("admin") && user.getPassword().equals("admin")){
+				List<User> userList = null;
+				userList = userService.findAll();
+				System.out.println(userList);
+				session.setAttribute("USERS_LIST", userList);
+				return "user/list";
+			}
 			return "redirect:../book";
 		} else {
 			LOGGER.error("Login Failure");
@@ -56,15 +65,15 @@ public class AuthenticationController {
 
 		User user = new User(name, username, password, mobileNumber, emailID);
 		userService.register(user);
-		return "redirect:../";
+		return "redirect:../auth";
 	}
 
-	@GetMapping("/reset-password")
+	@GetMapping("/resetPassword")
 	public String resetPassword() {
-		return "user/ResetPassword";
+		return "user/resetpassword";
 	}
 
-	@PostMapping("/reset-password")
+	@PostMapping("/resetPassword")
 	public String resetPassword(@RequestParam("username") String username,
 			@RequestParam("newPassword") String newPassword,
 			@RequestParam("confirmNewPassword") String confirmNewPassword) {
@@ -72,10 +81,11 @@ public class AuthenticationController {
 		LOGGER.info("User:" + user);
 		if (user != null)
 			if (newPassword.equals(confirmNewPassword)) {
-				userService.updatePassword(newPassword, username);
-				return "home";
+				user.setPassword(newPassword);
+				userService.updatePassword(user);
+				return "redirect:../auth";
 			}
-		return "home";
+		return "user/resetpassword";
 	}
 
 	@GetMapping("/logout")

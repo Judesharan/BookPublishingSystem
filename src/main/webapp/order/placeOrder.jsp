@@ -1,18 +1,23 @@
+<!DOCTYPE html>
 <html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
 <head>
-<link href="../myOrders/css/bootstrap.min.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>Place Order</title>
+<script src="https://s.codepen.io/assets/libs/modernizr.js"
+	type="text/javascript"></script>
+<script
+	src='http://cdnjs.cloudflare.com/ajax/libs/jquery/2.1.3/jquery.min.js'></script>
 
-<link href="../myOrders/css/login-register.css" rel="stylesheet" />
+<script src="../placeOrder/js/index.js"></script>
+<meta name="viewport" content="width=device-width, initial-scale=1">
 
-<link rel="stylesheet" href="../myOrders/css/style.css" />
-<link rel="stylesheet" href="../myOrders/css/font-awesome.min.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="../myOrders/js/jquery.min.js"></script>
-<script src="../myOrders/js/tether.min.js"></script>
-<script src="../myOrders/js/bootstrap.min.js"></script>
 
+<link rel="stylesheet" href="../placeOrder/css/style.css">
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
+<link rel="stylesheet" href="../showBook/css/style.css">
+<link rel="stylesheet" href="../bookList/css/style.css">
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
 	rel='stylesheet' type='text/css'>
@@ -29,9 +34,8 @@
 <script
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../menu.js"></script>
-
-<title>Admin</title>
 </head>
+
 <body>
 	<header>
 		<div id="top">
@@ -54,56 +58,81 @@
 			</div>
 		</div>
 	</header>
+	<div class="wrap cf">
+		<div class="heading cf">
+			<h1>My Cart</h1>
+			<a href="../book" class="continue">Continue Shopping</a>
+		</div>
+		<div class="cart">
+			<ul class="cartWrap">
+				<li class="items odd"><c:if
+						test="${empty MY_CART_ITEMS || MY_CART_ITEMS.orderItems.isEmpty()}">
+						<img src="../placeOrder/images/empty-cart.gif" width="600"/>
+						
+					</c:if> <c:if
+						test="${!empty MY_CART_ITEMS && !MY_CART_ITEMS.orderItems.isEmpty()}">
+						<div class="infoWrap">
+							<div class="cartSection">
+								<table>
+									<thead>
+										<tr>
+											<th></th>
+											<th>No.</th>
+											<th>Title</th>
+											<th>Quantity</th>
+											<th>Price</th>
+										</tr>
+									</thead>
+									<tbody>
+										<c:forEach items="${MY_CART_ITEMS.orderItems}" var="item"
+											varStatus="loop">
+											<tr>
+												<td><img src="../${item.book.imageUrl}" alt=""
+													class="itemImg" /></td>
+												<td><p class="itemNumber">${loop.index+1}</p></td>
+												<td><h3>${item.book.title}</h3></td>
+												<td><p>${item.quantity}</p></td>
+												<td><div class="prodTotal cartSection">
+														<p>Rs.${item.book.price*item.quantity }</p>
+													</div></td>
+												<td><div class="cartSection removeWrap">
+														<a href="../orderitems/remove?id=${loop.index}"
+															class="remove">X</a>
+													</div></td>
+											</tr>
+										</c:forEach>
+									</tbody>
+								</table>
 
-
-	<div class="content">
-		<div class="container-fluid">
-
-			<div class="row">
-
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<strong>List Of Users</strong>
+							</div>
 						</div>
-						<div class="panel-body">
-							<table id="ordersTbl" border="1"
-								class="table table-striped table-bordered">
-								<thead>
-								<tr>
-									<th width="5%">ID</th>
-									<th>Name</th>
-									<th>Username</th>
-									<th>Mobile Number</th>
-									<th>Email</th>
-									<th>Status</th>
-									<th>Role</th>
-								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${USERS_LIST}" var="user">
-									<tr>
-										<td>${user.id}</td>
-										<td>${user.name}</td>
-										<td>${user.username}</td>
-										<td>${user.mobileNumber}</td>
-										<td>${user.email }</td>
-										<td>${user.active}</td>
-										<td>${user.role.roleName}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-							</table>
+					</c:if></li>
+			</ul>
+		</div>
+		<c:if
+			test="${ MY_CART_ITEMS != null && MY_CART_ITEMS.orderItems.size()>0}">
+			<div class="col-md-4">
+				<c:set var="no_of_items" value="${MY_CART_ITEMS.orderItems.size()}" />
+				<c:set var="total_amount" value="0" />
+				<c:forEach items="${MY_CART_ITEMS.orderItems}" var="item">
+					<c:set var="total_amount"
+						value="${total_amount + item.book.price*item.quantity}" />
+				</c:forEach>
+				<input type="hidden" name="total_amount" value="${total_amount}" />
+				<div class="subtotal cf">
+					<ul>
+						<li class="totalRow"><span class="label">Shipping</span><span
+							class="value">FREE</span></li>
 
-
-						</div>
-					</div>
-
+						<li class="totalRow final"><span class="label">Total</span><span
+							class="value">Rs. ${total_amount}</span></li>
+						<li class="totalRow"><a href="../orders/checkout"
+							class="btn continue">Place Order</a></li>
+					</ul>
 				</div>
 			</div>
-		</div>
+		</c:if>
 	</div>
-
 	<footer id="footer">
 		<div class="bg"></div>
 		<div class="content">
@@ -155,7 +184,5 @@
 			</div>
 		</div>
 	</footer>
-
-
 </body>
 </html>

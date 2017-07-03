@@ -34,19 +34,6 @@ public class OrderController {
 
 	}
 
-	@GetMapping
-	public String list(ModelMap modelMap, HttpSession session) {
-
-		List<Order> list = orderService.findAllOrders();
-		System.out.println("orders:" + list.size());
-		for (Order order : list) {
-			System.out.println(order);
-		}
-		modelMap.addAttribute("ORDERS_LIST", list);
-		return "list";
-
-	}
-
 	@PostMapping("/save")
 	public String save(@RequestParam("total_amount") double totalAmount, HttpSession session) {
 		Order orderInCart = (Order) session.getAttribute("MY_CART_ITEMS");
@@ -55,7 +42,6 @@ public class OrderController {
 			orderService.save(orderInCart);
 			session.removeAttribute("MY_CART_ITEMS");
 		}
-
 		return "redirect:../orders/myorders";
 	}
 
@@ -73,7 +59,11 @@ public class OrderController {
 
 	@GetMapping("/cart")
 	public String cart() {
-		return "order/cart";
+		return "order/placeOrder";
 	}
-
+	
+	@GetMapping("/checkout")
+	public String checkout(){
+		return "order/checkout";
+	}
 }

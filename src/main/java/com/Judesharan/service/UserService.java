@@ -33,8 +33,8 @@ public class UserService {
 		return userRepository.findOne(id);
 	}
 
-	public User updatePassword(String newPassword, String username) {
-		return userRepository.updatePassword(newPassword, username, 'A');
+	public User updatePassword(User user) {
+		return userRepository.save(user);
 		
 	}
 

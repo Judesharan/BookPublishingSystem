@@ -7,7 +7,7 @@
 <link rel="stylesheet" href="../login/css/style.css" />
 <script src="../login/js/index.js"></script>
 
-<link id="theme" rel="stylesheet" type="text/css" href="style.css"
+<link id="theme" rel="stylesheet" type="text/css" href="../style.css"
 	title="theme" />
 <link rel="stylesheet" type="text/css"
 	href="<c:url value="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Condensed|Droid+Sans|Droid+Sans|Droid+Sans|Droid+Sans" />" />

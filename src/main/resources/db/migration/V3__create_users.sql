@@ -14,10 +14,21 @@ CONSTRAINT active_CQ CHECK ( active IN ('A','I') ),
 CONSTRAINT user_role_id_fk FOREIGN KEY ( user_role_id ) REFERENCES roles (role_id)
 );
 
-
 INSERT INTO USERS (id, name, username, password, mobile_no , email_ID, active, user_role_id) VALUES 
 (
 1, 
+'Admin', 
+'admin', 
+'admin',
+'9876543210',
+'admin@gmail.com' ,
+'A',
+1
+);
+
+INSERT INTO USERS (id, name, username, password, mobile_no , email_ID, active, user_role_id) VALUES 
+(
+2, 
 'Sharan', 
 'Sharan7797', 
 'sharan123',

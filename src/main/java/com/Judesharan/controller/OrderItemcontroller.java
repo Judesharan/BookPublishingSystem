@@ -25,14 +25,12 @@ public class OrderItemcontroller {
 	private BookService bookService;
 
 	@PostMapping("/addtocart")
-	public String addToCart(@RequestParam("book_isbn") long isbn, @RequestParam("quantity") Integer Quantity,
+	public String addToCart(@RequestParam("book_isbn") long isbn, @RequestParam("quantity") Integer quantity,
 			HttpSession session) {
 		
 		User user = (User) session.getAttribute("USER_LOGGED");
 
 		Order order = (Order) session.getAttribute("MY_CART_ITEMS");
-		
-		System.out.println(order);
 
 		// create order
 		if (order == null) {
@@ -51,7 +49,7 @@ public class OrderItemcontroller {
 		for (OrderItem item : orderItems) {
 
 			if (item.getBook().getIsbn() ==(isbn)) {
-				int totalQuantity = item.getQuantity() + Quantity;
+				int totalQuantity = item.getQuantity() + quantity;
 				item.setQuantity(totalQuantity);
 				isItemExists = true;
 			}
@@ -65,7 +63,7 @@ public class OrderItemcontroller {
 
 			Book book = bookService.findOne(isbn);
 			orderItem.setBook(book);
-			orderItem.setQuantity(Quantity);
+			orderItem.setQuantity(quantity);
 			orderItems.add(orderItem);
 		}
 
@@ -74,12 +72,6 @@ public class OrderItemcontroller {
 		session.setAttribute("MY_CART_ITEMS", order);
 
 		return "redirect:../orders/cart";
-	}
-
-	@GetMapping("/list")
-	public String list(HttpSession session) {
-		return null;
-
 	}
 
 	@GetMapping("/remove")

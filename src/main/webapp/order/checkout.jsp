@@ -1,18 +1,15 @@
+<!DOCTYPE html>
 <html>
 <%@ taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
-<html>
 <head>
-<link href="../myOrders/css/bootstrap.min.css" rel="stylesheet" />
+<meta charset="UTF-8">
+<title>Checkout</title>
+<meta name="viewport" content="width=device-width">
+<link rel="stylesheet" href="../checkout/css/style.css">
+<script src="../checkout/js/index.js"></script>
 
-<link href="../myOrders/css/login-register.css" rel="stylesheet" />
-
-<link rel="stylesheet" href="../myOrders/css/style.css" />
-<link rel="stylesheet" href="../myOrders/css/font-awesome.min.css" />
-<meta http-equiv="Content-Type" content="text/html; charset=ISO-8859-1">
-<script src="../myOrders/js/jquery.min.js"></script>
-<script src="../myOrders/js/tether.min.js"></script>
-<script src="../myOrders/js/bootstrap.min.js"></script>
-
+<link rel="stylesheet"
+	href="https://cdnjs.cloudflare.com/ajax/libs/meyer-reset/2.0/reset.min.css">
 <link
 	href='https://fonts.googleapis.com/css?family=Open+Sans:400,600,700'
 	rel='stylesheet' type='text/css'>
@@ -30,9 +27,10 @@
 	src="https://ajax.googleapis.com/ajax/libs/jquery/1.11.2/jquery.min.js"></script>
 <script src="../menu.js"></script>
 
-<title>Admin</title>
 </head>
+
 <body>
+
 	<header>
 		<div id="top">
 			<div class="bg"></div>
@@ -55,55 +53,93 @@
 		</div>
 	</header>
 
-
-	<div class="content">
-		<div class="container-fluid">
-
-			<div class="row">
-
-				<div class="col-md-12">
-					<div class="panel panel-default">
-						<div class="panel-heading">
-							<strong>List Of Users</strong>
-						</div>
-						<div class="panel-body">
-							<table id="ordersTbl" border="1"
-								class="table table-striped table-bordered">
-								<thead>
+	<div class='container'>
+		<div class='window'>
+			<div class='order-info'>
+				<div class='order-info-content'>
+					<br><h2>Order Summary</h2>
+					<div class='line'></div>
+					<table class='order-table'>
+						<tbody>
+							<c:forEach items="${MY_CART_ITEMS.orderItems}" var="item"
+								varStatus="loop">
 								<tr>
-									<th width="5%">ID</th>
-									<th>Name</th>
-									<th>Username</th>
-									<th>Mobile Number</th>
-									<th>Email</th>
-									<th>Status</th>
-									<th>Role</th>
+									<td><img src="../${item.book.imageUrl}" class='full-width'></img>
+									</td>
+									<td><br> <span class='thin'>${item.book.title}</span>
+										<br>
+									<span class='thin small'>Quantity: ${item.quantity}<br></span>
+									</td>
+
 								</tr>
-							</thead>
-							<tbody>
-								<c:forEach items="${USERS_LIST}" var="user">
-									<tr>
-										<td>${user.id}</td>
-										<td>${user.name}</td>
-										<td>${user.username}</td>
-										<td>${user.mobileNumber}</td>
-										<td>${user.email }</td>
-										<td>${user.active}</td>
-										<td>${user.role.roleName}</td>
-									</tr>
-								</c:forEach>
-							</tbody>
-							</table>
-
-
+								<tr>
+									<td>
+										<div class='price'>Rs.${item.book.price*item.quantity}</div>
+									</td>
+								</tr>
+							</c:forEach>
+						</tbody>
+					</table>
+					<c:if
+						test="${ MY_CART_ITEMS != null && MY_CART_ITEMS.orderItems.size()>0}">
+						<c:set var="no_of_items"
+							value="${MY_CART_ITEMS.orderItems.size()}" />
+						<c:set var="total_amount" value="0" />
+						<c:forEach items="${MY_CART_ITEMS.orderItems}" var="item">
+							<c:set var="total_amount"
+								value="${total_amount + item.book.price*item.quantity}" />
+						</c:forEach>
+						<input type="hidden" name="total_amount" value="${total_amount}" />
+						<div class='line'></div>
+						<div class='total'>
+							<span style='float: left;'> Delivery<br> TOTAL
+							</span> <span style='float: right; text-align: right;'> FREE<br>
+								<b>Rs. ${total_amount}</b>
+							</span>
 						</div>
-					</div>
-
+					</c:if>
 				</div>
 			</div>
+
+			<div class='credit-info'>
+				<div class='credit-info-content'>
+					<form name="orderForm" action="../orders/save" method="post">
+						<input type="hidden" name="total_amount" value="${total_amount}" />
+						<table class='half-input-table'>
+							<tr>
+								<td>Please select your card:</td>
+								<td><div class='dropdown' id='card-dropdown'>
+										<div class='dropdown-btn' id='current-card'>Visa</div>
+										<div class='dropdown-select'>
+											<ul>
+												<li>Master Card</li>
+												<li>American Express</li>
+											</ul>
+										</div>
+									</div></td>
+							</tr>
+						</table>
+						<img
+							src="../checkout/images/visa_logo.png"
+							height='80' class='credit-card-image' id='credit-card-image'></img>
+						Card Number <input class='input-field' required></input> Card
+						Holder <input class='input-field' required></input>
+						<table class='half-input-table'>
+							<tr>
+								<td>Expires <input class='input-field' required></input>
+								</td>
+								<td>CVV <input class='input-field' required></input>
+								</td>
+							</tr>
+						</table>
+						<button class='pay-btn'>Checkout</button>
+					</form>
+				</div>
+
+			</div>
+
 		</div>
 	</div>
-
 	<footer id="footer">
 		<div class="bg"></div>
 		<div class="content">
@@ -155,7 +191,5 @@
 			</div>
 		</div>
 	</footer>
-
-
 </body>
 </html>

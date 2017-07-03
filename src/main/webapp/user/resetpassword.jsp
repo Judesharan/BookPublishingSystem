@@ -1,18 +1,62 @@
-<!DOCTYPE html >
+<!DOCTYPE html>
 <html>
+<%@taglib prefix="c" uri="http://java.sun.com/jsp/jstl/core"%>
 <head>
-<link id="theme" rel="stylesheet" type="text/css" href="style.css"
+<meta charset="UTF-8">
+<title>Update Password</title>
+<link rel="stylesheet" href="../login/css/style.css" />
+<script src="../login/js/index.js"></script>
+
+<link id="theme" rel="stylesheet" type="text/css" href="../style.css"
 	title="theme" />
-<link rel="stylesheet"
-	href="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Condensed|Droid+Sans|Droid+Sans|Droid+Sans|Droid+Sans"
-	type="text/css" />
+<link rel="stylesheet" type="text/css"
+	href="<c:url value="http://fonts.googleapis.com/css?family=Roboto+Condensed|Roboto+Condensed|Droid+Sans|Droid+Sans|Droid+Sans|Droid+Sans" />" />
 <script type="text/javascript" lang="javascript"
 	src="js/jquery-1.8.1.min.js"></script>
-<script type="text/javascript" lang="javascript" src="js/scripts.js"></script>
-<script type="text/javascript" lang="javascript" src="js/theme.js"></script>
-<script type="text/javascript" lang="javascript" src="js/custom.js"></script>
+<script type="text/javascript" lang="javascript" src="../js/scripts.js"></script>
+<script type="text/javascript" lang="javascript" src="../js/theme.js"></script>
+<script type="text/javascript" lang="javascript" src="../js/custom.js"></script>
 </head>
 <body>
+	<header>
+		<div id="top">
+			<div class="bg"></div>
+			<div class="row">
+				<div id="logo"></div>
+				<nav>
+					<div id="hmenu">
+						<ul>
+							<li><a href="/">Home</a></li>
+							<li><a href="/book">Book</a></li>
+						</ul>
+					</div>
+				</nav>
+				<div class="clear"></div>
+			</div>
+		</div>
+	</header>
+	<div class="container">
+		<section id="content">
+			<form action="../auth/resetPassword" method="post">
+				<h1>Update Password</h1>
+				<div>
+					<input type="text" placeholder="Enter your Username" required
+						name="username" />
+				</div>
+				<div>
+					<input type="password" placeholder="Enter your New Password" required
+						name="newPassword" />
+				</div>
+				<div>
+					<input type="password" placeholder="Confirm your New Password" required
+						name="confirmNewPassword" />
+				</div>
+				<div>
+					<input type="submit" value="Update" />
+				</div>
+			</form>
+		</section>
+	</div>
 	<footer id="footer">
 		<div class="bg"></div>
 		<div class="content">
